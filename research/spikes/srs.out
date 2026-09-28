@@ -1,0 +1,10 @@
+sr= 44100 finite=1 peak=0.489 isolated B32-vs-B512 maxdiff=0.00232
+sr= 48000 finite=1 peak=0.480 isolated B32-vs-B512 maxdiff=0.00458
+sr= 88200 finite=1 peak=0.553 isolated B32-vs-B512 maxdiff=0.00898
+sr= 96000 finite=1 peak=0.593 isolated B32-vs-B512 maxdiff=0.0154
+sr=176400 finite=1 peak=0.861 isolated B32-vs-B512 maxdiff=0.0899
+sr=192000 finite=1 peak=0.825 isolated B32-vs-B512 maxdiff=0.0429
+sr=352800 finite=1 peak=0.944 isolated B32-vs-B512 maxdiff=0.231
+sr=384000 finite=1 peak=0.944 isolated B32-vs-B512 maxdiff=0.262
+sr=705600 finite=1 peak=0.944 isolated B32-vs-B512 maxdiff=0.797
+sr=768000 finite=1 peak=0.944 isolated B32-vs-B512 maxdiff=0.674

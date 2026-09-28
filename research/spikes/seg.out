@@ -1,0 +1,24 @@
+isolated inst= 0 B1-vs-B512 maxdiff=0.000368
+isolated inst= 1 B1-vs-B512 maxdiff=0.000171
+isolated inst= 2 B1-vs-B512 maxdiff=0.00018
+isolated inst= 3 B1-vs-B512 maxdiff=0.000255
+isolated inst= 4 B1-vs-B512 maxdiff=0.000244
+isolated inst= 5 B1-vs-B512 maxdiff=0.000206
+isolated inst= 6 B1-vs-B512 maxdiff=0.000113
+isolated inst= 7 B1-vs-B512 maxdiff=0.00013
+isolated inst= 8 B1-vs-B512 maxdiff=0.000105
+isolated inst= 9 B1-vs-B512 maxdiff=7.06e-05
+isolated inst=10 B1-vs-B512 maxdiff=9.01e-05
+isolated inst=11 B1-vs-B512 maxdiff=9.71e-05
+isolated inst=12 B1-vs-B512 maxdiff=8.27e-05
+isolated inst=13 B1-vs-B512 maxdiff=3.25e-05
+isolated inst=14 B1-vs-B512 maxdiff=6.61e-05
+crossTU B=1 maxdiff=0
+crossTU B=32 maxdiff=0
+crossTU B=512 maxdiff=0
+B=  1 dense=1.47x moderate=20.55x realtime
+B=  8 dense=2.75x moderate=34.15x realtime
+B= 16 dense=3.03x moderate=36.77x realtime
+B= 32 dense=3.04x moderate=37.93x realtime
+B= 64 dense=3.23x moderate=37.71x realtime
+B=128 dense=3.18x moderate=36.30x realtime

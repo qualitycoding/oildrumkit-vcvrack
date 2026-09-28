@@ -1,0 +1,9 @@
+build/
+tests/build/
+/plugin.so
+/plugin.dll
+/plugin.dylib
+dist/
+*.o
+*.d
+__pycache__/

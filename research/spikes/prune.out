@@ -1,0 +1,20 @@
+sr= 44100 B=  1 vs512: worst tail-energy -0.408 dB (inst 14), worst -60dB-duration -13.30%
+sr= 44100 B= 16 vs512: worst tail-energy -0.171 dB (inst 14), worst -60dB-duration -10.01%
+sr= 44100 B= 32 vs512: worst tail-energy -0.092 dB (inst 14), worst -60dB-duration -8.39%
+sr= 44100 B= 64 vs512: worst tail-energy -0.012 dB (inst 14), worst -60dB-duration -3.83%
+sr= 44100 B=128 vs512: worst tail-energy -0.000 dB (inst 1), worst -60dB-duration +0.00%
+sr= 48000 B=  1 vs512: worst tail-energy -0.423 dB (inst 14), worst -60dB-duration -11.82%
+sr= 48000 B= 16 vs512: worst tail-energy -0.182 dB (inst 14), worst -60dB-duration -4.79%
+sr= 48000 B= 32 vs512: worst tail-energy -0.097 dB (inst 14), worst -60dB-duration -2.41%
+sr= 48000 B= 64 vs512: worst tail-energy -0.073 dB (inst 14), worst -60dB-duration -1.43%
+sr= 48000 B=128 vs512: worst tail-energy -0.001 dB (inst 2), worst -60dB-duration -0.28%
+sr= 96000 B=  1 vs512: worst tail-energy -1.172 dB (inst 14), worst -60dB-duration -25.97%
+sr= 96000 B= 16 vs512: worst tail-energy -0.507 dB (inst 14), worst -60dB-duration -18.33%
+sr= 96000 B= 32 vs512: worst tail-energy -0.235 dB (inst 14), worst -60dB-duration -15.99%
+sr= 96000 B= 64 vs512: worst tail-energy -0.150 dB (inst 14), worst -60dB-duration -6.81%
+sr= 96000 B=128 vs512: worst tail-energy -0.000 dB (inst 2), worst -60dB-duration -0.00%
+sr=192000 B=  1 vs512: worst tail-energy -5.395 dB (inst 14), worst -60dB-duration -33.91%
+sr=192000 B= 16 vs512: worst tail-energy -1.696 dB (inst 14), worst -60dB-duration -26.86%
+sr=192000 B= 32 vs512: worst tail-energy -1.528 dB (inst 14), worst -60dB-duration -18.04%
+sr=192000 B= 64 vs512: worst tail-energy -0.998 dB (inst 14), worst -60dB-duration -7.71%
+sr=192000 B=128 vs512: worst tail-energy -0.008 dB (inst 1), worst -60dB-duration -0.02%

@@ -1,0 +1,8 @@
+sr=44100 samples_differing=132187 maxabsdiff=0.679 peak=0.370
+sr=48000 samples_differing=143886 maxabsdiff=0.447 peak=0.504
+sr=96000 samples_differing=287875 maxabsdiff=0.726 peak=0.602
+sr=192000 samples_differing=575853 maxabsdiff=1.45 peak=0.842
+dense per-sample: 6.62 s for 10 s audio => 1.51x realtime
+dense block: 3.06x realtime
+moderate per-sample: 20.33x realtime
+15 simultaneous triggers worst: 149 us
