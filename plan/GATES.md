@@ -38,7 +38,12 @@
 - **Allowed responses:** `proceed` | `proceed-with-rescope: <text>` | `stop`.
 - **Branches:**
   - `proceed` → run S-010.
-  - `proceed-with-rescope: <text>` → do not change code. Write `BLOCKED.md` quoting the text, commit, push, halt. Any
+  - `proceed-with-rescope: windows-build-fix: <compiler/linker output>` → the only rescope the implementer may act on
+    without re-planning: fix the Windows build in non-frozen files (`src/`, `Makefile`, `tools/`) **without changing
+    behaviour, `engine/`, frozen files or `src/core/KitCore.hpp`**; re-run `bash tests/run_all.sh` on Linux (must print
+    `ALL FROZEN TESTS PASSED`); log the change in `DEVIATIONS.md`; update and push `GATE-G-101.md`; halt at G-101 again.
+    If the fix would need any excluded change → `BLOCKED.md`.
+  - any other `proceed-with-rescope: <text>` → do not change code. Write `BLOCKED.md` quoting the text, commit, push, halt. Any
     rescope that changes behaviour (e.g. a shorter block, engine fixes, velocity handling) touches frozen tests and
     requires re-running the planning protocol from Phase 0 (Test Challenge Rule, Phase 2E.4).
   - `stop` → write `STOPPED.md` with the reason, commit, push, halt.

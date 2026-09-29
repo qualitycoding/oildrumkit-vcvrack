@@ -55,7 +55,7 @@ and may be adopted (D-019).
 ## Human gates
 - **G-101** at the end of S-009: Windows build, Rack load, listening checklist, latency acceptance. Write
   `GATE-G-101.md`, push, and wait. Allowed responses: `proceed`, `proceed-with-rescope: <text>`, `stop`
-  (branches in `plan/GATES.md`). G-001 and G-002 are not applicable (`plan/GATES.md`).
+  (branches in `plan/GATES.md`; a `windows-build-fix:` rescope lets you fix the Windows build in non-frozen files and re-enter the gate). G-001 and G-002 are not applicable (`plan/GATES.md`).
 
 ## Halt / deviation protocol
 - Every fork has a rule in `plan/DECISIONS.md` (DR-01..DR-14). For anything else apply the default rule:

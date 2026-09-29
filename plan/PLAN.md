@@ -1,4 +1,13 @@
 <!-- STATUS HEADER (Phase 5) -->
+**Status: READY** (with disclosed caveats)
+- Profiles: `software` (`software.deploys = false`)
+- Research: 4 rounds, saturated (round 4 found nothing new); 26 claims, all load-bearing claims verified or corroborated except C-022 (single-source, gated by G-101)
+- Formal work (Phase 2A): N/A (no `math` profile)
+- Tests: 28 frozen (T-001..T-007, T-010..T-012, T-014, T-020..T-023, T-030..T-034, T-040, T-041, T-050..T-053, T-055, T-056); behaviour tests red against stubs; guard checks T-031..T-034 green by design (D-015); every test proven satisfiable by oracle spikes (C-026)
+- Freeze commit: `d1acae383fc5cf099e5f8879fee301ab0ecc5f20`
+- Pre-mortem: 2 rounds; open Critical: 0, High: 0 (R-011 is Low only once the human revokes the chat-exposed token); open Medium: R-001, R-004, R-007, R-019
+- Human gates: G-101 (Windows build, Rack load, listening, latency). G-001 N/A; G-002 not triggered
+- Caveat: no fresh-context subagents were available, so R5, the cold read and the pre-mortems were run by the planning agent itself (D-021)
 
 # Implementation plan — Oil Drum Kit as a VCV Rack 2 plugin
 
@@ -86,7 +95,7 @@ Commands assume the repository root as working directory and `RACK_DIR` exported
 - Inputs: `research/spikes/wrapper_oracle/plugin.json`, `research/spikes/wrapper_oracle/Makefile`, `engine/LICENSE`
 - Actions:
   1. `cp research/spikes/wrapper_oracle/plugin.json plugin.json && cp research/spikes/wrapper_oracle/Makefile Makefile && cp engine/LICENSE LICENSE`
-  2. Write `README.md` with these sections (headings exactly): `## Build` (Linux and Windows commands from `plan/ENVIRONMENT.md` and `plan/GATES.md`), `## Controls` (a table of every param/input/output from D-011 with D-005 mappings), `## Latency` (state 128 frames and the four millisecond values from D-003), `## Velocity` (trigger voltage on the firing frame, 10 V = full; use a VCA for dynamics), `## Sample rates` (behaviour identical to the VST up to 192 kHz; at 352.8 kHz and above the engine drives its limiter, C-014), `## Licences` (Apache-2.0; engine from qualitycoding/oildrumkit; panel labels from DejaVu Sans, see `tools/fonts/DejaVuSans-LICENSE.txt`; VCV Component Library graphics © VCV, licensed CC BY-NC 4.0, used non-commercially).
+  2. Write `README.md` with these sections (headings exactly): `## Build` (Linux and Windows commands from `plan/ENVIRONMENT.md` and `plan/GATES.md`), `## Controls` (a table of every param/input/output from D-011 with D-005 mappings), `## Latency` (state 128 frames and the four millisecond values from D-003), `## Velocity` (trigger voltage on the firing frame, 10 V = full; use a VCA for dynamics), `## Sample rates` (behaviour identical to the VST up to 192 kHz; at 352.8 kHz and above the engine drives its limiter, C-014; rates below 44.1 kHz are checked for numerical safety only, not sound), `## Licences` (Apache-2.0; engine from qualitycoding/oildrumkit; panel labels from DejaVu Sans, see `tools/fonts/DejaVuSans-LICENSE.txt`; VCV Component Library graphics © VCV, licensed CC BY-NC 4.0, used non-commercially).
 - Outputs: `plugin.json`, `Makefile`, `LICENSE`, `README.md`
 - Evidence produced: none (T-050 completes in S-007)
 - Done when: `jq -e '.slug=="OilDrumKit"' plugin.json` exits 0; `for h in "## Build" "## Controls" "## Latency" "## Velocity" "## Sample rates" "## Licences"; do grep -qF "$h" README.md || echo MISSING $h; done` prints nothing; `grep -q "Apache License" LICENSE`.

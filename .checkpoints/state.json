@@ -1,1 +1,86 @@
-{}
+{
+ "protocol": "planning-protocol-v3.1",
+ "task": "oildrumkit-vcv-rack-plugin",
+ "branch": "gen-20260928T150855Z-oildrumkit-vcv-rack-plugin",
+ "phase": "5-complete",
+ "status": "READY",
+ "profiles": {
+  "active": [
+   "software"
+  ],
+  "software.deploys": false
+ },
+ "environment": {
+  "push_access": true,
+  "subagents": false,
+  "tiers_available": [
+   "Opus"
+  ],
+  "sandbox_blocked_hosts": [
+   "vcvrack.com (SDK download)"
+  ]
+ },
+ "tier_substitutions": [
+  {
+   "role": "R5 adversarial / 3.6 cold read / Phase 4 pre-mortem (Fable, fresh context)",
+   "used": "Opus (same agent, separate passes)",
+   "reason": "no subagent spawning or Fable tier in this environment",
+   "decision": "D-021"
+  }
+ ],
+ "intake": {
+  "questions_sent": 11,
+  "answered": [
+   "repo: qualitycoding/oildrumkit-vcvrack"
+  ],
+  "defaults_adopted": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "10",
+   "11"
+  ]
+ },
+ "research": {
+  "rounds": 4,
+  "saturated_at_round": 4,
+  "claims": 26
+ },
+ "freeze_commit": "d1acae383fc5cf099e5f8879fee301ab0ecc5f20",
+ "tests": {
+  "frozen": 28,
+  "red_verified": 24,
+  "guard_green_by_design": [
+   "T-031",
+   "T-032",
+   "T-033",
+   "T-034"
+  ],
+  "oracle_green": true
+ },
+ "premortem": {
+  "rounds": 2,
+  "open_critical": 0,
+  "open_high": 0,
+  "open_medium": [
+   "R-001",
+   "R-004",
+   "R-007",
+   "R-019"
+  ]
+ },
+ "gates": {
+  "G-001": "N/A",
+  "G-002": "not triggered",
+  "G-101": "pending (implementation S-009)"
+ },
+ "open_items": [
+  "Human: revoke the GitHub token pasted into the planning conversation (R-011, A-016)"
+ ],
+ "updated_at": "2026-09-29T07:16:35Z"
+}
