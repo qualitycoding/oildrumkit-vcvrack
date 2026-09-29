@@ -1,0 +1,3 @@
+# pip lockfile (hash-pinned). Install: python3 -m pip install --require-hashes -r env/requirements.lock
+fonttools==4.60.1 \
+    --hash=sha256:8177ec9676ea6e1793c8a084a90b65a9f778771998eb919d05db6d4b1c0b114c

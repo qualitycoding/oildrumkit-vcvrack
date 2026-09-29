@@ -1,0 +1,12 @@
+{
+  "slug": "OilDrumKit",
+  "name": "Oil Drum Kit",
+  "version": "2.0.0",
+  "license": "Apache-2.0",
+  "brand": "Galactic HQ",
+  "author": "Galactic Headquarters For Space Cadets",
+  "sourceUrl": "https://github.com/qualitycoding/oildrumkit-vcvrack",
+  "modules": [
+    { "slug": "OilDrumKit", "name": "Oil Drum Kit", "description": "Physically modelled struck-steel drum kit, 15 trigger inputs", "tags": ["Drum", "Physical modeling"] }
+  ]
+}

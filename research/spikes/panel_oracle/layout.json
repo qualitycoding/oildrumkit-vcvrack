@@ -1,0 +1,223 @@
+{
+ "hp": 20,
+ "title": "OIL DRUM KIT",
+ "brand": "GALACTIC HQ",
+ "components": [
+  {
+   "id": "DAMP",
+   "kind": "param",
+   "widget": "RoundBlackKnob",
+   "x": 14.0,
+   "y": 24.0,
+   "label": "DAMP"
+  },
+  {
+   "id": "STRIKE",
+   "kind": "param",
+   "widget": "RoundBlackKnob",
+   "x": 38.0,
+   "y": 24.0,
+   "label": "STRIKE"
+  },
+  {
+   "id": "ROOM",
+   "kind": "param",
+   "widget": "RoundBlackKnob",
+   "x": 62.0,
+   "y": 24.0,
+   "label": "ROOM"
+  },
+  {
+   "id": "TUNE",
+   "kind": "param",
+   "widget": "RoundBlackKnob",
+   "x": 87.6,
+   "y": 24.0,
+   "label": "TUNE"
+  },
+  {
+   "id": "DAMP_CV",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 14.0,
+   "y": 37.0,
+   "label": ""
+  },
+  {
+   "id": "STRIKE_CV",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 38.0,
+   "y": 37.0,
+   "label": ""
+  },
+  {
+   "id": "ROOM_CV",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 62.0,
+   "y": 37.0,
+   "label": ""
+  },
+  {
+   "id": "VOCT",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 87.6,
+   "y": 37.0,
+   "label": "V/OCT"
+  },
+  {
+   "id": "HAMMER",
+   "kind": "param",
+   "widget": "CKSSThree",
+   "x": 30.0,
+   "y": 50.0,
+   "label": "MTL WD RBR"
+  },
+  {
+   "id": "LIMITER",
+   "kind": "param",
+   "widget": "CKSS",
+   "x": 72.0,
+   "y": 50.0,
+   "label": "LIMIT"
+  },
+  {
+   "id": "TRIG_0",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 12.0,
+   "y": 66.0,
+   "label": "BD"
+  },
+  {
+   "id": "TRIG_1",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 31.4,
+   "y": 66.0,
+   "label": "SN1"
+  },
+  {
+   "id": "TRIG_2",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 50.8,
+   "y": 66.0,
+   "label": "SN2"
+  },
+  {
+   "id": "TRIG_3",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 70.2,
+   "y": 66.0,
+   "label": "LT1"
+  },
+  {
+   "id": "TRIG_4",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 89.6,
+   "y": 66.0,
+   "label": "LT2"
+  },
+  {
+   "id": "TRIG_5",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 12.0,
+   "y": 81.0,
+   "label": "MT1"
+  },
+  {
+   "id": "TRIG_6",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 31.4,
+   "y": 81.0,
+   "label": "MT2"
+  },
+  {
+   "id": "TRIG_7",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 50.8,
+   "y": 81.0,
+   "label": "HT1"
+  },
+  {
+   "id": "TRIG_8",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 70.2,
+   "y": 81.0,
+   "label": "HT2"
+  },
+  {
+   "id": "TRIG_9",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 89.6,
+   "y": 81.0,
+   "label": "SPL"
+  },
+  {
+   "id": "TRIG_10",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 12.0,
+   "y": 96.0,
+   "label": "RIDE"
+  },
+  {
+   "id": "TRIG_11",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 31.4,
+   "y": 96.0,
+   "label": "CH"
+  },
+  {
+   "id": "TRIG_12",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 50.8,
+   "y": 96.0,
+   "label": "OH"
+  },
+  {
+   "id": "TRIG_13",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 70.2,
+   "y": 96.0,
+   "label": "COW"
+  },
+  {
+   "id": "TRIG_14",
+   "kind": "input",
+   "widget": "PJ301MPort",
+   "x": 89.6,
+   "y": 96.0,
+   "label": "RIM"
+  },
+  {
+   "id": "LEFT",
+   "kind": "output",
+   "widget": "PJ301MPort",
+   "x": 70.2,
+   "y": 111.0,
+   "label": "L"
+  },
+  {
+   "id": "RIGHT",
+   "kind": "output",
+   "widget": "PJ301MPort",
+   "x": 89.6,
+   "y": 111.0,
+   "label": "R"
+  }
+ ]
+}

@@ -1,0 +1,794 @@
+[
+ {
+  "id": "C-001",
+  "claim": "Latest VCV Rack 2 release tag is v2.6.6 (commit 061ccf63c1758599396ac1bb10d47345d9d34076).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack",
+    "doi": "",
+    "title": "git ls-remote --tags",
+    "version": "v2.6.6",
+    "locator": "refs/tags/v2.6.6",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/shlabs-audio/stochast/releases",
+    "doi": "",
+    "title": "Stochast 2.0.3 release notes",
+    "version": "",
+    "locator": "built against Rack SDK 2.6.6",
+    "accessed": "2026-09-28",
+    "tier": 4
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-018",
+   "A-007"
+  ]
+ },
+ {
+  "id": "C-002",
+  "claim": "The Rack SDK is distributed as https://vcvrack.com/downloads/Rack-SDK-<version>-<os>-<cpu>.zip (also -latest-), extracting to a Rack-SDK/ directory.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/Building",
+    "doi": "",
+    "title": "Building - VCV Rack Manual",
+    "version": "",
+    "locator": "Building Rack plugins",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/gbraad-dotfiles/applications/blob/main/vcvrack-sdk.md",
+    "doi": "",
+    "title": "vcvrack-sdk.md",
+    "version": "",
+    "locator": "wget .../Rack-SDK-2.5.2-lin-x64.zip; RACK_DIR=.../Rack-SDK",
+    "accessed": "2026-09-28",
+    "tier": 4
+   },
+   {
+    "url": "https://github.com/apfelaudio/verilog-vcvrack/blob/2dd2f4a38c984678a11b711daa33e2a9415f2d7e/.github/workflows/main.yml",
+    "doi": "",
+    "title": "CI workflow",
+    "version": "",
+    "locator": "wget Rack-SDK-2.4.1-lin-x64.zip; RACK_DIR=`pwd`/Rack-SDK",
+    "accessed": "2026-09-28",
+    "tier": 4
+   }
+  ],
+  "confidence": "corroborated",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-018",
+   "S-001"
+  ]
+ },
+ {
+  "id": "C-003",
+  "claim": "Plugins build with Rack's plugin.mk from headers (include/, dep/include/) and link -lRack; on Linux libRack is resolved at load time via rpath /tmp/Rack2. A stub libRack.so suffices to link.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/plugin.mk",
+    "doi": "",
+    "title": "plugin.mk",
+    "version": "v2.6.6",
+    "locator": "LDFLAGS += -L$(RACK_DIR) -lRack; -Wl,-rpath=/tmp/Rack2",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/plugin_build/",
+    "doi": "",
+    "title": "spike plugin_build",
+    "version": "",
+    "locator": "make + make dist succeeded with tools/make_shim_sdk.sh",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-018",
+   "T-052",
+   "T-053"
+  ]
+ },
+ {
+  "id": "C-004",
+  "claim": "plugin.json: slug charset [A-Za-z0-9_-], version MAJOR must be 2, license SPDX id, tags from a fixed list including 'Drum' and 'Physical modeling'.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/Manifest",
+    "doi": "",
+    "title": "Plugin Manifest - VCV Rack Manual",
+    "version": "",
+    "locator": ".slug, .version, .license, .modules[].tags",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/plugin.mk",
+    "doi": "",
+    "title": "plugin.mk",
+    "version": "v2.6.6",
+    "locator": "SLUG/VERSION read with jq",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "corroborated",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-014",
+   "T-050"
+  ]
+ },
+ {
+  "id": "C-005",
+  "claim": "Voltage standards: audio ±5 V; triggers 10 V/1 ms; trigger inputs use a Schmitt trigger with low ≈0.1 V and high ≈1–2 V (current page: process(x, 0.1f, 1.f)); 1 V/oct; non-finite outputs → 0; monophonic modules read CV ports' first channel.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/VoltageStandards",
+    "doi": "",
+    "title": "Voltage Standards - VCV Rack Manual",
+    "version": "",
+    "locator": "Levels; Triggers and Gates; Pitch; NaNs; Polyphony",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://community.vcvrack.com/t/can-the-release-of-an-adsr-influence-a-clock-bug/17118?page=2",
+    "doi": "",
+    "title": "VCV community thread",
+    "version": "",
+    "locator": "quotes 10 V trigger, 0.1 V/1–2 V thresholds",
+    "accessed": "2026-09-28",
+    "tier": 4
+   }
+  ],
+  "confidence": "corroborated",
+  "evidence_class": "n/a",
+  "contradicted_by": [
+   "https://git.kx.studio/VCVRack/manual/commit/25a6793287c7c4bb80271239378144ef83b2132b (older revision: high threshold 2 V via rescale) — resolved: current manual page governs; either value is within the stated 1–2 V band"
+  ],
+  "informs": [
+   "D-004",
+   "D-005",
+   "D-006",
+   "D-007",
+   "T-001",
+   "T-006",
+   "T-030"
+  ]
+ },
+ {
+  "id": "C-006",
+  "claim": "rack::dsp::TSchmittTrigger<float>::process(in, low=0, high=1) has states LOW/HIGH/UNINITIALIZED, starts UNINITIALIZED, fires only on LOW→HIGH.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/include/dsp/digital.hpp",
+    "doi": "",
+    "title": "dsp/digital.hpp",
+    "version": "v2.6.6",
+    "locator": "lines 83-126",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-004",
+   "T-006"
+  ]
+ },
+ {
+  "id": "C-007",
+  "claim": "Module::onSampleRateChange(e) is called when the module is added and on every engine rate change, under the engine's exclusive lock; onReset(e) is called under the lock and the base implementation resets params (must be called by overrides).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/src/engine/Engine.cpp",
+    "doi": "",
+    "title": "Engine.cpp",
+    "version": "v2.6.6",
+    "locator": "setSampleRate lines 646-660; addModule 770-785; resetModule 871-877",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/include/engine/Module.hpp",
+    "doi": "",
+    "title": "Module.hpp",
+    "version": "v2.6.6",
+    "locator": "lines 411-434",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-010",
+   "D-011"
+  ]
+ },
+ {
+  "id": "C-008",
+  "claim": "Rack compile.mk adds -std=c++11 then EXTRA_CXXFLAGS (so -std=c++17 there wins) and uses -O3 -funsafe-math-optimizations -fno-omit-frame-pointer -march=nehalem; the engine requires C++17 (std::clamp).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/compile.mk",
+    "doi": "",
+    "title": "compile.mk",
+    "version": "v2.6.6",
+    "locator": "lines 17, 21, 30, 54",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/c11.cpp",
+    "doi": "",
+    "title": "spike c11",
+    "version": "",
+    "locator": "c++11 error: clamp is not a member of std; c++17 ok",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/plugin_build/plugin.cpp",
+    "doi": "",
+    "title": "spike plugin_build",
+    "version": "",
+    "locator": "static_assert(__cplusplus >= 201703L) passed",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-008",
+   "T-052"
+  ]
+ },
+ {
+  "id": "C-009",
+  "claim": "The engine header has no mutable static state, so multiple module instances on Rack worker threads are independent.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/oildrumkit/blob/35fbfead61a11a8c7f5609a95831a29f2cb2bf78/Source/DrumEngine.h",
+    "doi": "",
+    "title": "DrumEngine.h",
+    "version": "",
+    "locator": "grep of 'static' declarations: only const/constexpr/functions",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-010"
+  ]
+ },
+ {
+  "id": "C-010",
+  "claim": "DrumEngine::setSampleRate allocates (Room std::vector) and does not silence voices; re-preparing is equivalent to constructing at the new rate.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/oildrumkit/blob/35fbfead61a11a8c7f5609a95831a29f2cb2bf78/Source/DrumEngine.h",
+    "doi": "",
+    "title": "DrumEngine.h",
+    "version": "",
+    "locator": "lines 21, 112-164, 180-189",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/misc.out",
+    "doi": "",
+    "title": "spike misc",
+    "version": "",
+    "locator": "reprepare maxdiff=0",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-010",
+   "T-020"
+  ]
+ },
+ {
+  "id": "C-011",
+  "claim": "setSampleRate(sr)+allNotesOff() yields exactly zero output until the next trigger.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/misc.out",
+    "doi": "",
+    "title": "spike misc",
+    "version": "",
+    "locator": "post-reset max=0",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-010",
+   "T-021"
+  ]
+ },
+ {
+  "id": "C-012",
+  "claim": "A trigger produces non-zero output on the same sample (first sample of the next process()); with no triggers the output is exactly 0.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/misc.out",
+    "doi": "",
+    "title": "spike misc",
+    "version": "",
+    "locator": "onset index 0 for all 15; silence max=0",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "T-011",
+   "T-022"
+  ]
+ },
+ {
+  "id": "C-013",
+  "claim": "Engine output depends on how process() calls are segmented: (a) overlapping voices share one PRNG, so draw order changes with segmentation; (b) modes are pruned once per process() call, so segments shorter than 128 samples truncate decays (B=32: up to -0.24 dB tail energy, -16% -60 dB duration at 96 kHz), while B=128 matches 512-sample blocks within 0.008 dB / 0.28% at 44.1-192 kHz.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/oildrumkit/blob/35fbfead61a11a8c7f5609a95831a29f2cb2bf78/Source/DrumEngine.h",
+    "doi": "",
+    "title": "DrumEngine.h",
+    "version": "",
+    "locator": "renderVoice pruning lines 471-487; shared NoiseGen",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/equiv.out",
+    "doi": "",
+    "title": "spike equiv",
+    "version": "",
+    "locator": "per-sample vs block differ",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/prune.out",
+    "doi": "",
+    "title": "spike prune",
+    "version": "",
+    "locator": "energy/duration table",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-003",
+   "T-012"
+  ]
+ },
+ {
+  "id": "C-014",
+  "claim": "All Rack engine rates are numerically stable (finite); at >=352.8 kHz the engine output reaches the limiter ceiling 0.944; the soft limiter bounds output to 0.944.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/srs.out",
+    "doi": "",
+    "title": "spike srs",
+    "version": "",
+    "locator": "peak per rate",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/oildrumkit/blob/35fbfead61a11a8c7f5609a95831a29f2cb2bf78/Source/DrumEngine.h",
+    "doi": "",
+    "title": "DrumEngine.h",
+    "version": "",
+    "locator": "kCeil = 0.944; tanh limiter",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-006",
+   "T-030",
+   "R-002"
+  ]
+ },
+ {
+  "id": "C-015",
+  "claim": "CPU (1 vCPU sandbox): dense roll (15 hits/50 ms) per-sample 1.47x real time vs 3.0-3.2x for blocks >= 16; moderate 20.6x vs 37x.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/seg.out",
+    "doi": "",
+    "title": "spike seg",
+    "version": "",
+    "locator": "B=1..128 table",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-003",
+   "D-012",
+   "T-040",
+   "T-041"
+  ]
+ },
+ {
+  "id": "C-016",
+  "claim": "With identical segmentation and flags, engine output is bit-identical across translation units (g++ 13.3, -funsafe-math-optimizations).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/seg.out",
+    "doi": "",
+    "title": "spike seg",
+    "version": "",
+    "locator": "crossTU maxdiff=0 for B=1,32,512",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "T-010"
+  ]
+ },
+ {
+  "id": "C-017",
+  "claim": "Rack enables FTZ and DAZ (MXCSR |= 0x8040) on engine threads.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/src/system.cpp",
+    "doi": "",
+    "title": "system.cpp",
+    "version": "v2.6.6",
+    "locator": "resetFpuFlags lines 956-970",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "tests/harness.hpp"
+  ]
+ },
+ {
+  "id": "C-018",
+  "claim": "Under the VCV Rack Non-Commercial Plugin License Exception a free plugin may use any licence (e.g. Apache-2.0); Component Library graphics are CC BY-NC 4.0 (non-commercial use with credit and licence indication).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/PluginLicensing",
+    "doi": "",
+    "title": "Plugin Licensing - VCV Rack Manual",
+    "version": "",
+    "locator": "different open-source license; commercial section",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "Rack LICENSE.md",
+    "version": "v2.6.6",
+    "locator": "lines 6-16, 24-25",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "corroborated",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-014",
+   "A-018"
+  ]
+ },
+ {
+  "id": "C-019",
+  "claim": "Panels: mm units, height 128.5 mm, width HP x 5.08 mm; text must be converted to paths; no CSS or complex gradients. DejaVuSans.ttf ships in Rack res/fonts and fontTools converts it to paths.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/Panel",
+    "doi": "",
+    "title": "Module Panel Guide - VCV Rack Manual",
+    "version": "",
+    "locator": "Setup; SVG limitations",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/textpath.py",
+    "doi": "",
+    "title": "spike textpath",
+    "version": "",
+    "locator": "paths generated; font sha256 7da195a7...",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-013",
+   "T-051"
+  ]
+ },
+ {
+  "id": "C-020",
+  "claim": "1 HP = 15 px = 5.08 mm; widget sizes: PJ301M 23.7 px, RoundBlackKnob 28.35 px, CKSSThree 13.457x28.348 px, CKSS 14x20.641 px.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/include/app/common.hpp",
+    "doi": "",
+    "title": "common.hpp",
+    "version": "v2.6.6",
+    "locator": "RACK_GRID_WIDTH=15, HEIGHT=380",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/res/ComponentLibrary/",
+    "doi": "",
+    "title": "ComponentLibrary SVGs",
+    "version": "v2.6.6",
+    "locator": "width/height attributes",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-013",
+   "T-055"
+  ]
+ },
+ {
+  "id": "C-021",
+  "claim": "qualitycoding/oildrumkit@35fbfea: Source/DrumEngine.h is header-only with no JUCE dependency; API trigger(inst, vel), process(L, R, n) adds into buffers, setters clamp, 15 instruments, kChunk=128.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/oildrumkit/blob/35fbfead61a11a8c7f5609a95831a29f2cb2bf78/Source/DrumEngine.h",
+    "doi": "",
+    "title": "DrumEngine.h",
+    "version": "",
+    "locator": "lines 1-54, 168-222, 378-410",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-001",
+   "D-002",
+   "D-010"
+  ]
+ },
+ {
+  "id": "C-022",
+  "claim": "Windows plugin builds use MSYS2 MINGW64 with packages: git wget make tar unzip zip mingw-w64-x86_64-gcc mingw-w64-x86_64-gdb mingw-w64-x86_64-cmake autoconf automake libtool mingw-w64-x86_64-jq python zstd mingw-w64-x86_64-pkgconf.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/Building",
+    "doi": "",
+    "title": "Building - VCV Rack Manual",
+    "version": "",
+    "locator": "Windows",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/dep.mk",
+    "doi": "",
+    "title": "dep.mk",
+    "version": "v2.6.6",
+    "locator": "lines 46-48 (MSYS shell support)",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "single-source",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "G-101"
+  ]
+ },
+ {
+  "id": "C-023",
+  "claim": "Worst case of 15 simultaneous triggers costs <= 149 us of computation on the sandbox core.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "research/spikes/equiv.out",
+    "doi": "",
+    "title": "spike equiv",
+    "version": "",
+    "locator": "15 simultaneous triggers worst: 149 us",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "R-008"
+  ]
+ },
+ {
+  "id": "C-024",
+  "claim": "Rack 2.6.6 API used by D-011 exists with these signatures: config, configParam, configSwitch, configInput, configOutput (Module.hpp 118-197), Port::getVoltage/isConnected (Port.hpp 50, 182), createParamCentered/createInputCentered/createOutputCentered (helpers.hpp 98-136), mm2px (window/Svg.hpp 30-34), random::u32 (random.hpp 124).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/include/",
+    "doi": "",
+    "title": "Rack headers",
+    "version": "v2.6.6",
+    "locator": "as listed",
+    "accessed": "2026-09-28",
+    "tier": 1
+   },
+   {
+    "url": "research/spikes/wrapper_oracle/",
+    "doi": "",
+    "title": "spike wrapper_oracle",
+    "version": "",
+    "locator": "compiled and linked",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "D-011",
+   "T-052"
+  ]
+ },
+ {
+  "id": "C-025",
+  "claim": "Rack's engine sample-rate menu offers 44.1/48 kHz x 2^i for i=-2..4 (11.025 kHz .. 768 kHz).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack/blob/v2.6.6/src/app/MenuBar.cpp",
+    "doi": "",
+    "title": "MenuBar.cpp",
+    "version": "v2.6.6",
+    "locator": "lines 658-668",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "T-030"
+  ]
+ },
+ {
+  "id": "C-026",
+  "claim": "The frozen C++ suite is satisfiable: an oracle implementation of D-005/D-010 passes all 18 C++ tests; oracle panel and wrapper pass T-050..T-056; the stub fails all behaviour tests cleanly.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "research/spikes/kitcore_oracle/oracle_run.txt",
+    "doi": "",
+    "title": "oracle run",
+    "version": "",
+    "locator": "all PASS; T-040 ratio 1.024; T-041 35.1x",
+    "accessed": "2026-09-28",
+    "tier": 1
+   }
+  ],
+  "confidence": "verified",
+  "evidence_class": "n/a",
+  "contradicted_by": [],
+  "informs": [
+   "2B.5",
+   "R-016"
+  ]
+ }
+]

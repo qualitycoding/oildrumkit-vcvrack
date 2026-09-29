@@ -1,7 +1,8 @@
 // FROZEN — DO NOT MODIFY (tests/FROZEN_MANIFEST.sha256)
 // Security / input-validation tests per the threat model (plan/ASSUMPTIONS.md A-012): the only untrusted
 // inputs are patch voltages and parameter values. Outputs must stay finite (Rack Voltage Standards,
-// "NaNs and Infinity", C-005) and, with the limiter on, within 5 V x 0.944 (engine soft ceiling, C-014).
+// "NaNs and Infinity", C-005) and, with the limiter on, within 5 V x 0.944 (engine soft ceiling, C-014),
+// at Rack engine rates from the lowest to the highest offered (C-025: 11.025 kHz .. 768 kHz).
 #include "harness.hpp"
 #include "reference.hpp"
 #include <cmath>
@@ -40,7 +41,7 @@ static void run (float sr, bool limiter, uint32_t seed)
 
 TEST ("T-030", "hostile inputs (NaN, inf, 1e30 V, denormals, out-of-range controls, trigger storm) are safe")
 {
-    for (float sr : { 48000.0f, 384000.0f, 768000.0f }) { run (sr, true, 21); run (sr, false, 22); }
+    for (float sr : { 11025.0f, 22050.0f, 48000.0f, 384000.0f, 768000.0f }) { run (sr, true, 21); run (sr, false, 22); }
     KitCore k; k.seed (2); k.setSampleRate (48000.0f);          // storm: every input toggles every frame
     FrameIn f;
     for (int n = 0; n < 48000; ++n)
