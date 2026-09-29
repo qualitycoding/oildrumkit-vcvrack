@@ -6,12 +6,13 @@
   "S-004",
   "S-005",
   "S-006",
-  "S-007"
+  "S-007",
+  "S-008"
  ],
  "sdk": {
   "kind": "shim",
   "sha256": "shim"
  },
  "last_suite": "T-040 ratio 1.036; T-041 40.3x real time",
- "updated_at": "2026-09-29T07:31:37Z"
+ "updated_at": "2026-09-29T07:31:56Z"
 }
