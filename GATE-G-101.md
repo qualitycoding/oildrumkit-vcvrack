@@ -99,3 +99,9 @@ Measured: T-040 wrapper/engine ratio 0.987 (limit 1.15); T-041 38.7x real time (
 Allowed responses: `proceed` | `proceed-with-rescope: <text>` | `stop`
 (`proceed-with-rescope: windows-build-fix: <compiler/linker output>` lets the implementer fix the Windows build in
 non-frozen files and re-enter this gate; see `plan/GATES.md`).
+
+## Human response (2026-09-30)
+
+`proceed`
+
+Recorded as given; the implementer has no means to verify that W1-W2, L1-L5 and T1 were carried out on Windows/in Rack.
