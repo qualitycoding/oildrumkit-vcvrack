@@ -8,7 +8,7 @@ static const char* const kNames[odk::kNumInstruments] = { "Bass drum", "Snare 1"
 
 struct OilDrumKit : Module
 {
-    enum ParamId { DAMP_PARAM, STRIKE_PARAM, ROOM_PARAM, TUNE_PARAM, HAMMER_PARAM, LIMITER_PARAM, PARAMS_LEN };
+    enum ParamId { DAMP_PARAM, STRIKE_PARAM, ROOM_PARAM, TUNE_PARAM, HAMMER_PARAM, LIMITER_PARAM, VEL_PARAM, PARAMS_LEN };
     enum InputId { ENUMS (TRIG_INPUT, odk::kNumInstruments), DAMP_CV_INPUT, STRIKE_CV_INPUT, ROOM_CV_INPUT, VOCT_INPUT, INPUTS_LEN };
     enum OutputId { LEFT_OUTPUT, RIGHT_OUTPUT, OUTPUTS_LEN };
     odk::KitCore core;
@@ -21,6 +21,7 @@ struct OilDrumKit : Module
         configParam (TUNE_PARAM, -12.f, 12.f, 0.f, "Tune", " semitones");
         configSwitch (HAMMER_PARAM, 0.f, 2.f, 1.f, "Hammer", { "Metal", "Wood", "Rubber" });
         configSwitch (LIMITER_PARAM, 0.f, 1.f, 1.f, "Limiter", { "Off", "On" });
+        configParam (VEL_PARAM, 0.f, 1.f, 1.f, "Velocity Scale", "%", 0.f, 100.f); // S-003: Velocity attenuation for 10V gates
         for (int i = 0; i < odk::kNumInstruments; ++i) configInput (TRIG_INPUT + i, std::string (kNames[i]) + " trigger");
         configInput (DAMP_CV_INPUT, "Damping CV"); configInput (STRIKE_CV_INPUT, "Strike position CV");
         configInput (ROOM_CV_INPUT, "Room CV"); configInput (VOCT_INPUT, "Tune 1 V/oct");
@@ -37,7 +38,14 @@ struct OilDrumKit : Module
         c.hammer = (int) std::round (params[HAMMER_PARAM].getValue()); c.limiter = params[LIMITER_PARAM].getValue() > 0.5f;
         core.setControls (c);
         odk::FrameIn in;
-        for (int i = 0; i < odk::kNumInstruments; ++i) in.trig[i] = inputs[TRIG_INPUT + i].getVoltage();
+        // S-003: Velocity CV Normalization & Dynamic Attenuation
+        float velScale = params[VEL_PARAM].getValue();
+        for (int i = 0; i < odk::kNumInstruments; ++i) {
+            float v = inputs[TRIG_INPUT + i].getVoltage();
+            // If input is a standard 10V gate pulse (>8V), scale it by the velocity attenuator
+            // If input is a dynamic trigger (<8V), capture from edge voltage as before
+            in.trig[i] = (v > 8.0f) ? (v * velScale) : v;
+        }
         in.dampingCv = inputs[DAMP_CV_INPUT].getVoltage(); in.strikeCv = inputs[STRIKE_CV_INPUT].getVoltage();
         in.roomCv = inputs[ROOM_CV_INPUT].getVoltage(); in.voct = inputs[VOCT_INPUT].getVoltage();
         const odk::FrameOut o = odk::monoFold (core.processFrame (in), outputs[RIGHT_OUTPUT].isConnected());
