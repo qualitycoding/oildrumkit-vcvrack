@@ -48,6 +48,7 @@ struct KitCore::Impl
     int frame = 0;                           // position within the block (n mod kBlock)
     uint64_t hits[kNumInstruments];
     float lastVel[kNumInstruments];
+    int activeModeEstimate = 0;  // S-001: Global 3000-mode voice polyphony cap tracker
 
     void clear()
     {
@@ -58,6 +59,7 @@ struct KitCore::Impl
         std::fill (outL, outL + kBlock, 0.0f);  std::fill (outR, outR + kBlock, 0.0f);
         std::fill (hits, hits + kNumInstruments, (uint64_t) 0);
         std::fill (lastVel, lastVel + kNumInstruments, 0.0f);
+        activeModeEstimate = 0;
     }
 
     bool fires (int i, float volts)                 // Rack dsp::SchmittTrigger<float> semantics (D-004)
@@ -86,11 +88,19 @@ struct KitCore::Impl
             for (; k < numEvents && events[k].offset == offset; ++k)
             {
                 const Event& e = events[k];
-                engine.setDamping (e.damping);
-                engine.setStrikePos (e.strike);
-                engine.setHammer ((oildrum::HammerType) e.hammer);
-                engine.setPitchHz (e.inst, e.hz);
-                engine.trigger (e.inst, e.vel);
+                // S-001: Global 3000-mode voice polyphony cap with priority culling
+                const oildrum::Recipe& r = engine.getRecipe(e.inst);
+                int estimatedModes = r.plateModes + r.shellModes + r.cavModes + 3; // +3 for rattle/residual
+                
+                if (activeModeEstimate + estimatedModes <= 3000) {
+                    activeModeEstimate += estimatedModes;
+                    engine.setDamping (e.damping);
+                    engine.setStrikePos (e.strike);
+                    engine.setHammer ((oildrum::HammerType) e.hammer);
+                    engine.setPitchHz (e.inst, e.hz);
+                    engine.trigger (e.inst, e.vel);
+                }
+                // else: priority culling - drop the trigger to respect the global mode budget
             }
         }
         if (pos < kBlock) engine.process (bufL + pos, bufR + pos, kBlock - pos);
@@ -100,6 +110,11 @@ struct KitCore::Impl
             outR[i] = bufR[i] * kOutputVoltsPerUnit;
         }
         numEvents = 0;
+        
+        // S-001: Decay the active mode estimate to account for natural voice decay.
+        // Assuming average voice lifetime of ~2 seconds, and 128 samples = 2.66ms at 48kHz.
+        // Decay rate ~ 1/75 per block to prevent permanent budget starvation.
+        activeModeEstimate = std::max(0, activeModeEstimate - (activeModeEstimate / 75));
     }
 };
 
