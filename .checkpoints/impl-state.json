@@ -9,12 +9,21 @@
   "S-007",
   "S-008",
   "S-009",
-  "S-010"
+  "S-010",
+  "S-LISTEN"
  ],
  "sdk": {
   "kind": "shim",
   "sha256": "shim"
  },
- "last_suite": "ALL FROZEN TESTS PASSED; T-040 ratio 0.987; T-041 38.7x",
- "updated_at": "2026-09-30T20:00:30Z"
+ "last_suite": "ALL FROZEN TESTS PASSED (re-run 2026-11-03, shim SDK); T-040 ratio 0.616; T-041 25.0x; round-001 blocked awaiting render bundles",
+ "updated_at": "2026-11-03T00:00:00Z",
+ "listening_gate": {
+  "gate_id": "G-LISTEN",
+  "round": 1,
+  "status": "blocked",
+  "evidence": "listening/G-LISTEN/round-001/result.json",
+  "decision": "D-022",
+  "next_step": "render reference/candidate bundles; seed 20261106"
+ }
 }

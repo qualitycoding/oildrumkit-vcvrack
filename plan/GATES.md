@@ -47,3 +47,30 @@
     rescope that changes behaviour (e.g. a shorter block, engine fixes, velocity handling) touches frozen tests and
     requires re-running the planning protocol from Phase 0 (Test Challenge Rule, Phase 2E.4).
   - `stop` → write `STOPPED.md` with the reason, commit, push, halt.
+
+## G-LISTEN — blind VST/Rack equivalence listening (D-022, supplementary)
+
+- **Trigger step:** S-LISTEN (after S-010; post-G-101 validation only).
+- **Comparison:** implementation equivalence of the Rack module against the
+  oildrumkit VST/canonical engine reference at the recorded
+  source/submodule commit (engine 35fbfead61a11a8c7f5609a95831a29f2cb2bf78),
+  identical trigger schedule and settings; the fixed 128-frame latency is
+  accounted for explicitly before windowing. Not a physical-drum realism
+  test.
+- **Frozen settings:** 12 matched instrument/event onset pairs,
+  `--window start`, 1.0 s clips, common RMS −23 dBFS (pre-match levels
+  retained), 10 ms fades, 44.1 kHz PCM-24; pass = ≤ 8/12 correct AND no
+  unresolved equivalence finding, in addition to T-010/T-012 and the full
+  frozen suite; max three rounds; base seed 20261106, rounds 2/3 add
+  1000/2000.
+- **Questions:** which side is the VST; attack, ring/decay, velocity/timbre,
+  choke, control/CV response, stereo/mono, latency, crackles, reset. The
+  G-101 Windows/Rack checklist remains host evidence and is not replaced by
+  the blind score.
+- **Allowed responses:** `proceed` (close G-LISTEN; resume amended S-RETRO/
+  close sequence; no rerun of S-010, no new tag) | `iterate: <notes>`
+  (wrapper scheduling/block/latency/parameter fix; rerun suite/reviews; new
+  seed; engine unchanged) | `proceed-with-rescope: <text>` |
+  `stop` (no external release action).
+- **Status:** round-001 blocked — reference/candidate render bundles not
+  produced (listening/G-LISTEN/round-001/result.json).

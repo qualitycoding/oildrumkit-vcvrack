@@ -188,3 +188,26 @@ explicitly adversarial passes rather than by fresh-context agents. This weakens 
 - **Default rule (verbatim):** Choose the most reversible option that does not expand scope, log it in `DEVIATIONS.md`
   with rationale, and continue — **unless** it touches frozen tests, security, data integrity, a public interface,
   research integrity, or (upward) a statement's evidence class, in which case halt and write `BLOCKED.md`.
+- **D-022** — Post-G-101 listening-only amendment: branch `impl/vcv-listening`
+  created from current `main` (61ba36650251b01d4d933598ccceb2dfa5e7f5e8,
+  remediation state included); supplementary S-LISTEN / G-LISTEN added after
+  the applicable remediation/review checks for VST/Rack implementation
+  equivalence. Historical G-101's human `proceed` is preserved and not
+  reopened; this blind test occurs after publication and is not claimed to
+  have occurred before it. No new release, tag or VCV Library submission is
+  authorized. `audio = true` set in plan/PROFILE.md and checkpoint mode
+  flags. Frozen settings: 12 onset pairs, `--window start`, 1.0 s clips,
+  −23 dBFS RMS, 10 ms fades, 44.1 kHz PCM-24, ≤8/12 plus no unresolved
+  equivalence finding (in addition to T-010/T-012 and the full frozen
+  suite), max three rounds, base seed 20261106; 128-frame latency accounted
+  for before windowing. Frozen suite re-run 2026-11-03 on candidate
+  61ba36650251: ALL FROZEN TESTS PASSED (shim SDK assembled from pinned Rack
+  v2.6.6 tarballs); T-040 0.616, T-041 25.0x. Round-001 blocked on
+  reference/candidate render bundles (listening/G-LISTEN/round-001/
+  result.json).
+- **D-023** — Vendored canonical pair tools from qualitycoding/skills @
+  7915c7b7e0cecbee5116e72a4cf5699383df5983: scripts/make_blind_pairs.py
+  sha256 3c4f75854e2a692d3a77460d470e289be405c2166bbc30abbd4eeb053d6824c7;
+  scripts/score_blind.py sha256
+  f2d9ea5c76a731fd3dd553d698a9f1a92b393d272f6ea898e6a9e5cbde49defa.
+  CLI verified on Python 3 with numpy/soundfile/scipy.

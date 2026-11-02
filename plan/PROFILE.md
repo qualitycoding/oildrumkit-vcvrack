@@ -18,3 +18,9 @@
 Note: `computational` was considered and rejected. The engine's numerical behaviour is pre-existing and out of scope (A-004);
 the port's numerical obligations (bit-level equivalence to a reference schedule, fidelity to host-block rendering) are
 software tests (T-010, T-012), not research results.
+
+## Audio profile flag (D-022)
+
+| Flag | Value | Justification |
+|---|---|---|
+| `audio` | true | Blind listening equivalence gate G-LISTEN (S-LISTEN) added after G-101; listener-evaluated sound is in scope, with the frozen tests unchanged. |

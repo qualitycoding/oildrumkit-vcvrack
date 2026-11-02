@@ -188,3 +188,42 @@ Commands assume the repository root as working directory and `RACK_DIR` exported
 - On failure: DR-10. Never create a GitHub Release or upload binaries (A-008).
 - Gate: none
 - Relevant decisions/claims: D-017, A-008
+
+### S-LISTEN Blind VST/Rack equivalence listening (supplementary, D-022)
+- Tier: Sonnet
+- Profile: software + audio (D-022)
+- Depends on: S-010 complete; G-101 human `proceed` (historical, preserved)
+- Inputs: vendored `scripts/make_blind_pairs.py` / `scripts/score_blind.py`
+  (D-023), engine submodule 35fbfead61a11a8c7f5609a95831a29f2cb2bf78,
+  `renders/demo_48k.wav`, frozen settings in plan/GATES.md G-LISTEN
+- Actions:
+  1. Render VST/canonical-engine reference clips and Rack candidate clips
+     with identical trigger times, voltages/velocities and settings at the
+     recorded source commit; account for the fixed 128-frame latency before
+     windowing.
+  2. Build 12 onset pairs (seed 20261106) per G-LISTEN; deliver the listener
+     bundle; render the frozen demos (event-driven single hits at 3/6/10 V,
+     dense roll/groove, closed-hat choke, all controls and CV, mono fold,
+     reset/retrigger, 44.1/48/96/192 kHz comparisons).
+  3. Score with `scripts/score_blind.py` after answers are locked; record
+     the round under `listening/G-LISTEN/round-00N/` per the common schema.
+  4. Write `GATE-G-LISTEN.md`; halt and wait for the human's response.
+- Outputs: `listening/G-LISTEN/round-00N/`, `GATE-G-LISTEN.md`
+- Evidence produced: blind pair bundle, demos, score/p-value
+- Done when: round record is complete and `GATE-G-LISTEN.md` is pushed.
+- Checkpoint: `step_completed += S-LISTEN`; G-LISTEN open.
+- On failure: `iterate` with a new seed; never weaken a frozen test.
+- Gate: G-LISTEN (supplementary)
+- Relevant decisions/claims: D-022, D-023, D-003
+
+### S-RETRO Retrospective and close (amended, D-022)
+- Tier: Haiku
+- Profile: software
+- Depends on: G-LISTEN response `proceed`
+- Actions: retrospective over the whole port including the supplementary
+  blind round; close-out record; no new tag, release or VCV Library
+  submission (A-008 unchanged).
+- Done when: close record committed on `impl/vcv-listening` and verified.
+- Checkpoint: `step_completed += S-RETRO`.
+- Gate: none
+- Relevant decisions/claims: D-022, A-008

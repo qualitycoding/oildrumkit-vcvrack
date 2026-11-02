@@ -60,3 +60,4 @@ Test categories: unit T-001..T-007, T-014; integration T-010..T-012, T-023, T-05
 T-021); security T-030..T-033 (dependency scan: no package-manager dependencies; supply chain is covered by pins —
 engine T-033, SDK hash D-018/DR-02, font hash DR-12, pip `--require-hashes`); performance T-040, T-041. Deployment
 tests: N/A (`software.deploys = false`).
+| Blind equivalence listening gate (audio profile, D-022/D-023) | plan/GATES.md G-LISTEN, plan/PLAN.md S-LISTEN, GATE-G-LISTEN.md, listening/G-LISTEN/round-001/result.json | S-LISTEN | vendored script hashes; frozen suite re-run ALL PASSED 2026-11-03 |

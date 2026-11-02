@@ -8,7 +8,8 @@
   "active": [
    "software"
   ],
-  "software.deploys": false
+  "software.deploys": false,
+  "audio": true
  },
  "environment": {
   "push_access": true,
@@ -82,5 +83,19 @@
  "open_items": [
   "Human: revoke the GitHub token pasted into the planning conversation (R-011, A-016)"
  ],
- "updated_at": "2026-09-29T07:16:35Z"
+ "updated_at": "2026-09-29T07:16:35Z",
+ "listening_gate": {
+  "gate_id": "G-LISTEN",
+  "active_step": "S-LISTEN",
+  "round": 1,
+  "status": "blocked",
+  "evidence": "listening/G-LISTEN/round-001/result.json",
+  "candidate_commit": "61ba36650251b01d4d933598ccceb2dfa5e7f5e8",
+  "decision": "D-022",
+  "base": "main@61ba36650251",
+  "next_step": "render VST/engine reference + Rack candidate bundles; build pairs seed 20261106; score round-001"
+ },
+ "artifacts": {
+  "GATE-G-LISTEN.md": "written"
+ }
 }
