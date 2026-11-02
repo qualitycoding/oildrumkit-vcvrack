@@ -18,3 +18,7 @@
 Note: `computational` was considered and rejected. The engine's numerical behaviour is pre-existing and out of scope (A-004);
 the port's numerical obligations (bit-level equivalence to a reference schedule, fidelity to host-block rendering) are
 software tests (T-010, T-012), not research results.
+
+## v3.9 addendum profile confirmation
+
+Active profiles unchanged; `software` active. Target protocol v3.9.
