@@ -69,6 +69,6 @@ and CV values are read on the frame a hit fires. The closed hi-hat chokes the op
 
 ## Licences
 
-Apache-2.0 (see `LICENSE` on `main`). The engine comes from qualitycoding/oildrumkit (Apache-2.0). Panel labels are
+Apache-2.0 (see [LICENSE](LICENSE)). The engine comes from qualitycoding/oildrumkit (Apache-2.0). Panel labels are
 outlined from DejaVu Sans. The knob, jack and switch graphics come from the VCV Rack Component Library, (c) VCV,
 licensed CC BY-NC 4.0, and are used non-commercially with credit.
