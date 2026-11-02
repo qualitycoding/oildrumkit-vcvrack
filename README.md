@@ -27,6 +27,8 @@ make -j4 && make install
 
 Tests: `RACK_DIR=<sdk> bash tests/run_all.sh`.
 
+**Tested against a stand-in Rack SDK.** The official Rack SDK could not be reached when the port was built, so the tests ran against a shim SDK (`tools/make_shim_sdk.sh`). The last recorded full run (2026-09-30) passed, but it was before the polyphony cap and the velocity-scale parameter were added, and the module has not been confirmed to load in a real copy of Rack.
+
 ## Controls
 
 | Control | Type | Mapping |
@@ -37,6 +39,7 @@ Tests: `RACK_DIR=<sdk> bash tests/run_all.sh`.
 | Tune | knob −12..+12 semitones + Tune 1 V/oct | scales every instrument's fundamental: `2^(semitones/12 + volts)` |
 | Hammer | 3-way switch | Metal / Wood / Rubber |
 | Limiter | 2-way switch | soft output limiter on/off |
+| Velocity Scale | parameter 0..100 % (default 100 %), **no widget on the panel** | scales trigger inputs above 8 V; see Velocity |
 | Bass drum … Rimshot | 15 trigger inputs | engine order: Bass, Snare 1, Snare 2, Low tom 1–2, Mid tom 1–2, High tom 1–2, Splash, Ride, Closed hi-hat, Open hi-hat, Cowbell, Rimshot |
 | Left / Right | outputs | stereo mix, ±5 V scale; if Right is unpatched, Left carries the mono sum |
 
@@ -50,12 +53,19 @@ by exactly 128 frames: 2.90 ms at 44.1 kHz, 2.67 ms at 48 kHz, 1.33 ms at 96 kHz
 
 ## Velocity
 
-Velocity is the trigger voltage on the firing frame: 10 V is full velocity, 5 V is half. Standard 10 V gates
-therefore always play at full velocity; put a VCA or attenuator in front of an input for dynamics.
+Velocity is the trigger voltage on the firing frame: 10 V is full velocity, 5 V is half. Inputs above 8 V are treated
+as plain gates and are multiplied by the Velocity Scale parameter. That parameter is defined in the module, but the
+panel has no knob for it, so it stays at 100 % and a standard 10 V gate still plays at full velocity. For dynamics,
+put a VCA or attenuator in front of an input, or use triggers of 8 V or less.
+
+## Polyphony cap
+
+Each hit is charged an estimated number of resonator modes, and a hit that would take the running total past 3000
+is dropped. The total decays by about 1/75 per block.
 
 ## Sample rates
 
-Behaviour is identical to the VST up to 192 kHz. At 352.8 kHz and above the engine drives its own limiter, so the kit
+Behaviour matches the VST up to 192 kHz, apart from the polyphony cap above. At 352.8 kHz and above the engine drives its own limiter, so the kit
 sounds saturated. Rates below 44.1 kHz are checked for numerical safety only, not for sound.
 
 ## Licences
