@@ -60,3 +60,18 @@ Test categories: unit T-001..T-007, T-014; integration T-010..T-012, T-023, T-05
 T-021); security T-030..T-033 (dependency scan: no package-manager dependencies; supply chain is covered by pins —
 engine T-033, SDK hash D-018/DR-02, font hash DR-12, pip `--require-hashes`); performance T-040, T-041. Deployment
 tests: N/A (`software.deploys = false`).
+
+## v3.9 addendum traceability (2026-11-02)
+
+| Requirement | Artifact | Step | Verification |
+|---|---|---|---|
+| Gap ledger per planning root | `plan/ADDENDUM-V3.9-GAP.md` | S-ADD-001 | `v39_addendum_verify.py final` |
+| Planning-only scope freeze | D-900 in `plan/DECISIONS.md` | S-ADD-001 | verifier + retrospective |
+| Mutation three-tier priced CI, aggregator, report score gate | `reviews/MUTATION.md` | S-ADD-080 | verifier + first CI run (pending in CI) |
+| Split lesson/knowledge stores | G-003 in `plan/GATES.md`, `.checkpoints/state.json` | S-ADD-010/S-ADD-060 | verifier |
+| Full-context checkpoints / zero-context resume | `.checkpoints/state.json` | S-ADD-020 | verifier |
+| Assumption audit, reviews | `premortem/ASSUMPTION_AUDIT.md`, `reviews/` | S-ADD-030 | verifier |
+| Honest verification, deviations | `DEVIATIONS.md`, `EXECUTION_LOG.md` | S-ADD-040 | verifier |
+| Ephemeral protections | `plan/ENVIRONMENT.md` | S-ADD-050 | verifier |
+| CI platform matrix | `plan/CI-MATRIX.md` | S-ADD-070 | cold read |
+| Cold read / pre-mortem | this file, `premortem/RISK_REGISTER.md` | S-ADD-090 | verifier |

@@ -1,3 +1,5 @@
+# PLAN — protocol v3.9 (upgraded by ADDENDUM-PLAN-V3.9.md)
+
 <!-- STATUS HEADER (Phase 5) -->
 **Status: READY** (with disclosed caveats)
 - Profiles: `software` (`software.deploys = false`)
@@ -188,3 +190,12 @@ Commands assume the repository root as working directory and `RACK_DIR` exported
 - On failure: DR-10. Never create a GitHub Release or upload binaries (A-008).
 - Gate: none
 - Relevant decisions/claims: D-017, A-008
+
+
+## Amendment closing/review steps (v3.9)
+
+- **S-000** — Intake and environment probe (recorded at plan intake).
+- **S-REVIEW** — Traditional code review before packaging/release.
+- **S-ADVERSARIAL** — Adversarial review of security/correctness claims.
+- **S-RETRO** — Retrospective: review execution log, deviations and gate records.
+- **S-KNOW** — Knowledge/lessons: record classified lessons and knowledge items; G-003 controls publication to the Lessons and knowledge stores.

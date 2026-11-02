@@ -1,5 +1,7 @@
 # HANDOFF — Oil Drum Kit as a VCV Rack 2 plugin
 
+
+Reading order: `HANDOFF.md` → `ADDENDUM-PLAN-V3.9.md` → `plan/PLAN.md`. Later protocol amendments take precedence only where the gap ledger says so.
 ## Purpose
 Port the existing modal-synthesis oil-drum engine (`qualitycoding/oildrumkit@35fbfea`, `Source/DrumEngine.h`) to a
 VCV Rack 2 module, unchanged in sound, as a Rack-independent core (`src/core/KitCore.*`) plus a thin Rack wrapper.
